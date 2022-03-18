@@ -64,7 +64,7 @@ with mp_hands.Hands(min_detection_confidence=0.5, min_tracking_confidence=0.5) a
                             if click % 5 == 0:
                                 click = click + 1
                                 print("Left click")
-                                # pyautogui.leftClick()
+                                pyautogui.leftClick()
                     except:
                         pass
 
