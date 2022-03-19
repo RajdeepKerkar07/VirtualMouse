@@ -10,7 +10,7 @@ click = 0
 
 video = cv2.VideoCapture(0)
 
-with mp_hands.Hands(min_detection_confidence=0.5, min_tracking_confidence=0.5) as hands:
+with mp_hands.Hands(min_detection_confidence=0.8, min_tracking_confidence=0.8) as hands:
     while video.isOpened():
         _, frame = video.read()
         image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
@@ -58,11 +58,13 @@ with mp_hands.Hands(min_detection_confidence=0.5, min_tracking_confidence=0.5) a
                             pass
 
                     try:
-                        Distance = sqrt(
-                            (indexfingertip_x - middlefingertip_x) ** 2 + (indexfingertip_y - middlefingertip_y) ** 2)
-                        if -30 < Distance < 30:
+                        Distance_x = sqrt(
+                            (indexfingertip_x - middlefingertip_x) ** 2 + (indexfingertip_x - middlefingertip_x) ** 2)
+                        Distance_y = sqrt(
+                            (indexfingertip_y - middlefingertip_y) ** 2 + (indexfingertip_y - middlefingertip_y) ** 2)
+                        if -5 < Distance_x and Distance_y < 5:
+                            click += 1
                             if click % 5 == 0:
-                                click = click + 1
                                 print("Left click")
                                 pyautogui.leftClick()
                     except:
